@@ -17,7 +17,7 @@ __Conclusions__: In contrast to ICMJE guidance, retrospective registration is di
 ----------------------------------------------------
 ### Associated publications and presentations
 
-* Preprint available 
+* [Preprint available on MedRxiv](https://doi.org/10.1101/2022.10.09.22280784)
 
 * Poster presentation at the [_9th International Congress on Peer Review and Scientific Publication_](https://peerreviewcongress.org) in Chicago, 08-10 Sep 2022
 

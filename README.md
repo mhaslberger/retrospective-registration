@@ -17,7 +17,9 @@ __Conclusions__: In contrast to ICMJE guidance, retrospective registration is di
 ----------------------------------------------------
 ### Associated publications and presentations
 
-* [Preprint available on MedRxiv](https://doi.org/10.1101/2022.10.09.22280784)
+* [Open access journal publication in BMJ Open](https://bmjopen.bmj.com/content/13/4/e069553)
+
+* [Preprint published on MedRxiv](https://doi.org/10.1101/2022.10.09.22280784) 
 
 * Poster presentation at the [_9th International Congress on Peer Review and Scientific Publication_](https://peerreviewcongress.org) in Chicago, 08-10 Sep 2022
 
@@ -33,7 +35,7 @@ __Conclusions__: In contrast to ICMJE guidance, retrospective registration is di
 |raw_data/`03_starrr_coding_sample.csv`| csv of the full sample of retrospectively registered trials for which publications were assessed in this study|
 |final_rating/`starrr_ratings_final.csv`| csv of the ratings (ratings were orignally done in a xlsx file, which was exported to csv|
 |`starrr_dataset.*`| csv and Rds file of the __FINAL DATASET__, annotated with EudraCT dates, WoS metadata and ICMJE data|
-|`icmje_journals.csv`| csv containing all journals and listed on the icmje page as member journals or journals following the icmje recommendations |
+|`icmje_journals.csv`| csv containing all journals and listed on the icmje page as member journals or journals following the icmje recommendations - moved to https://github.com/mhaslberger/icmje-journals|
 
 #### Scripts (in the `analysis` folder)
 |File|Description|

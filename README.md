@@ -3,13 +3,10 @@
 ----------------------------------------------------
 ### Project description
 
-__Objective__: Preregistration of clinical research has been widely implemented and advocated for many reasons: to detect and mitigate publication bias, selective reporting, and undisclosed changes in determination of primary and secondary outcomes. Prospective registration allows for public scrutiny of trials, identify research gaps and to support the coordination of efforts by preventing unnecessary duplication. Retrospective registration undermines many of these reasons but is commonly found. We provide a comprehensive analysis of retrospective registration and the reporting thereof in publications, as well as factors associated with these practices. 
-
-__Design__: From an analysis conducted previously in the [Strech Group](https://www.bihealth.org/de/translation/innovationstreiber/quest-center/teams/ag-strech), I use a validated and previously published dataset (1,2) of trials registered on ClinicalTrials.gov or DRKS, with a German University Medical Center as the lead center, completed between 2009 and 2017, and with at least one peer-reviewed results publication. From all results publications of retrospectively registered trials, I extracted all registration statements, including mentions and justifications of retrospective registration. I analyze associations between key trial variables and different registration and reporting practices.
-
-__Results__: Based on our analysis of 1030 retrospectively registered CTs, 2,0% (21) explicitly report the retrospective registration in the abstract and 3.3% (34) in the full text. In 2.3% (24) of publications, a justification/explanation is provided in the full text. Analyses are ongoing – we will present full results at the conference, including a qualitative analysis of the reasons given for retrospective registration, as well as trends over time and exploratory analyses of the associations between retrospective registration and other reporting practices such as registration number reporting and cross-registration practices between different registries.  
-
-__Conclusions__: Disclosure of retrospective registration would be a positive signal for rigor as the registrants would feel it critical to transparently report this limitation. However, only a small number of retrospectively registered studies report the retrospective nature of the registration. Lack of disclosure might lead readers to wrongly interpret the registration as a quality criterion that, in the case of a retrospective registration, rather describes a concern. Our study provides a detailed analysis of this issue.
+__Objective__: Prospective registration of clinical research has been widely implemented and advocated for many reasons: to detect and mitigate publication bias, selective reporting, and undisclosed changes in the determination of primary and secondary outcomes. Prospective registration allows for public scrutiny of trials, facilitates the identification of gaps in research, and supports the coordination of efforts by preventing unnecessary duplication. Retrospective registration undermines many of these reasons but is commonly found. We provide a comprehensive analysis of retrospective registration and the reporting thereof in publications, as well as factors associated with these practices.
+__Design__: For this cross-sectional study, we used a validated dataset (1,2) of trials registered on ClinicalTrials.gov or DRKS, with a German University Medical Center as the lead center, completed between 2009 and 2017, and with at least one peer-reviewed results publication. We extracted all registration statements from all results publications of retrospectively registered trials, including mentions and justifications of retrospective registration. We analyzed associations between key trial variables and different registration and reporting practices.
+__Results__: In our dataset of 1927 trials with a corresponding results publication, 956 (53.7%) were retrospectively registered. Of those, 2.2% (21) explicitly report the retrospective registration in the abstract and 3.5% (33) in the full text. In 2.1% (20) of publications, authors provide a justification/explanation for the retrospective registration in the full text. Registration numbers were significantly underreported in abstracts of retrospectively registered trials (p < 0.001). Publications in ICMJE member journals had higher rates of both prospective registration and disclosure of retrospective registration, although not statistically significant. Publications in journals claiming to follow ICMJE recommendations showed lower rates compared to non-ICMJE-following journals. 
+__Conclusions__: In contrast to ICMJE guidance, retrospective registration is disclosed and explained only in a small number of retrospectively registered studies. Lack of disclosure might lead readers to wrongly interpret the registration as a quality criterion that, in the case of a retrospective registration, rather describes a concern. Disclosure of the retrospective nature of the registration would require 1-2 additional sentences in the manuscript and could be easily implemented by publishers. 
  
 #### References:
 
@@ -20,7 +17,7 @@ __Conclusions__: Disclosure of retrospective registration would be a positive si
 ----------------------------------------------------
 ### Associated publications and presentations
 
-* Publication coming soon... 
+* [Preprint available on MedRxiv](https://doi.org/10.1101/2022.10.09.22280784)
 
 * Poster presentation at the [_9th International Congress on Peer Review and Scientific Publication_](https://peerreviewcongress.org) in Chicago, 08-10 Sep 2022
 
@@ -43,6 +40,4 @@ __Conclusions__: Disclosure of retrospective registration would be a positive si
 |------|------|
 |`01-sample-generation.R`| import and filter the IntoValue dataset, make files for analysis, piloting and rating|
 |`02-merge-ratings.R`| clean and merge the ratings with the overall dataset, annotate the dataset with data from Web of Science, EudraCT dates, and ICMJE data|
-|`get-eudract-data.R`| scrape the EudraCT database for key trial metadata|
-|`get-icmje-journals.R`| scrape the contents of the ICMJE page to get a list of journals following the recommendations and member journals (see `icmje_journals.csv`)|
-|`03-analysis.Rmd`| main analysis and report generation |
+|`03-analysis.R`| main analysis |

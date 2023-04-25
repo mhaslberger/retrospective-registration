@@ -146,7 +146,7 @@ test
 # first, fisher test for ICMJE membership 
 testtable <- table(starrr$is_prospective, starrr$icmje_member)
 testtable
-test <- fisher.test(testtable)
+test <- chisq.test(testtable)
 test
 # next, chisq. test for ICMJE member/following
 testtable <- table(starrr$is_prospective, starrr$icmje_member|starrr$icmje_following)
@@ -237,3 +237,91 @@ testtable
 test <- chisq.test(testtable)
 test
 
+
+
+
+
+
+# ------------------------------------------------------------
+# added analyses for first revision
+# ------------------------------------------------------------
+
+starrr <- 
+  starrr %>% 
+  # make a new variable for the registration delay (days from registration to study start) 
+  # positive value means prospective registration by x days
+  # nevative value means retrospective registration by x days
+  mutate(start_registation_diff = start_date - registration_date, 
+         # also make a new variable for the difference between registration and publication: "days from registration to publication"
+         # positive value means publication after registration
+         # nevative value means publication before registration
+         registration_publication_diff = publication_date - registration_date, 
+         # also make a new variable for trial duration: "days from trial start to finish"
+         start_completion_diff = completion_date - start_date)
+         
+
+# some plots to try out displaying this 
+retro %>% 
+  ggplot() + 
+  geom_point(aes(y = start_registation_diff, x = registration_publication_diff, colour = (registration_publication_diff < 365 & registration_publication_diff > 0))) +
+  theme(panel.background=element_rect(fill = "white", colour = "lightgrey"), 
+        panel.grid.major=element_line(colour="lightgrey", linetype = "dotted"), 
+        legend.position = "none") + 
+  labs(y = "Days from registration to publication", size = "n trials") + 
+  labs(x = "Days from registration to start", size = "n trials") 
+
+retro %>% 
+  ggplot() + 
+  geom_point(aes(y = start_registation_diff, x = registration_publication_diff, colour = rr_addressed_total)) +
+  theme(panel.background=element_rect(fill = "white", colour = "lightgrey"), 
+        panel.grid.major=element_line(colour="lightgrey", linetype = "dotted"), 
+        legend.position = "none") + 
+  labs(y = "Days from registration to publication", size = "n trials") + 
+  labs(x = "Days from registration to start", size = "n trials") + 
+  geom_hline(yintercept = 0)
+
+retro %>% 
+  ggplot() + 
+  geom_point(aes(x = start_completion_diff, y = registration_publication_diff, colour = (registration_publication_diff < 365 & registration_publication_diff > 0))) +
+  theme(panel.background=element_rect(fill = "white", colour = "lightgrey"), 
+        panel.grid.major=element_line(colour="lightgrey", linetype = "dotted"), 
+        legend.position = "none") + 
+  labs(y = "Days from registration to publication") + 
+  labs(x = "Duration of trial (days)") + 
+  geom_hline(yintercept = 0)
+
+retro %>% 
+  ggplot() + 
+  geom_point(aes(x = start_completion_diff, y = registration_publication_diff, colour = rr_addressed_total)) +
+  theme(panel.background=element_rect(fill = "white", colour = "lightgrey"), 
+        panel.grid.major=element_line(colour="lightgrey", linetype = "dotted"), 
+        legend.position = "none") + 
+  labs(y = "Days from registration to publication") + 
+  labs(x = "Duration of trial (days)") + 
+  geom_abline(intercept = 0, slope = 1)
+
+
+# histogram of the time difference between registration and publication for retrospectively registered trials 
+retro %>% 
+  ggplot() + 
+  geom_histogram(aes(x = as.integer(registration_publication_diff), colour = (registration_date > completion_date)), bins = 150) +
+  theme(panel.background=element_rect(fill = "white", colour = "lightgrey"), 
+        panel.grid.major=element_line(colour="lightgrey", linetype = "dotted"), 
+        legend.position = "none") + 
+  labs(x = "Days from registration to publication") + 
+  labs(y = "Number of trials") + 
+  geom_vline(xintercept = 0)
+
+# can this be described as bimodal? there seems to be a small spike in registrations before publication (near the 0 on the x-axis) 
+
+
+table(retro$registration_date > retro$completion_date & retro$registration_date < retro$publication_date)
+sum(retro$registration_date > retro$completion_date & retro$registration_date < retro$publication_date, na.rm = T)/nrow(retro) *100 
+table(retro$registration_date > retro$completion_date & retro$registration_date > retro$publication_date)
+sum(retro$registration_date > retro$completion_date & retro$registration_date > retro$publication_date, na.rm = T)/nrow(retro) *100 
+# percentage of studies 
+
+filter(retro, retro$registration_date > retro$completion_date & retro$registration_date < retro$publication_date)$registration_publication_diff %>% median()
+filter(retro, retro$registration_date > retro$completion_date & retro$registration_date > retro$publication_date)$registration_publication_diff %>% median()
+
+table(retro$registration_publication_diff < 365, retro$start_completion_diff > 365)
